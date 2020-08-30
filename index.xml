@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="opensearch.xsl" type="text/xsl"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+	<ShortName>Демострация</ShortName>
+	<Description>
+		Это демострания некоторых возможностей OpenSearch.
+		<p xmlns="http://www.w3.org/1999/xhtml">
+			Для демострации возможностей необходимо:
+			<ol>
+				<li>добавить этот поиск через адресную строку либо поле поиска рядом с ней</li>
+				<li>задать краткое имя  '<code>@demo</code>' в <a href="about:preferences#search">настройках поисковых систем</a>.</li>
+				<li>в адресной строке ввести '<code>@demo -</code>' и будет открыт список доступных команд</li> 
+				<li>После выбора нужной команды необходимо нажать пробел.</li> 
+				<li>После выбора интересующего заголовка статьи нужно нажать <code>Enter</code> или если ничего не заинтересовало то нажмите два раза <code>Esc</code>.</li>
+			</ol>
+			<script>
+				var pages = {
+					"Прогрессивная загрузка XML страниц": 513858,
+					"XML сайты в результатах поиска": 510318,
+					"Межпланетная файловая система — Простой блог в IPFS при помощи XSLT": 489638,
+					"Качаем 16GB торрент через планшет с 4GB свободного места": 473636,
+					"Что не так с Хабром": 516674
+				};
+				setTimeout(onpopstate = function(){
+					var post_id = pages[decodeURIComponent(document.location.hash.substring(1)).replace(/[+]/g, ' ')];
+					if (post_id)
+						window.location.replace(`https://habr.com/ru/post/${post_id}/`);
+				}, 0);
+			</script>
+		</p>
+	</Description>
+	<Image type="image/svg+xml">https://ivan386.github.io/magnet-uri-logo/magnet-uri-logo.svg</Image>
+	<Url type="text/html" method="get" template="https://ivan386.github.io/opensearch-demo/index.xml#{searchTerms}" />
+	<Url type="application/x-suggestions+json" method="get" template="https://ivan386.github.io/opensearch-demo/suggestions/{searchTerms}.json" />
+</OpenSearchDescription>
